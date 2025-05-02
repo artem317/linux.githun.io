@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мир Linux - Всё о свободной ОС</title>
+    <style>
+        :root {
+            --primary: #3a7bd5;
+            --secondary: #00d2ff;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --success: #28a745;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 85%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        nav {
+            background-color: var(--dark);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        nav li {
+            margin: 0 1.5rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        section {
+            padding: 3rem 0;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+            color: var(--dark);
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card h3 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        .distros {
+            background-color: var(--light);
+        }
+        
+        .distro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .distro-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .distro-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .distro-img {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .distro-info {
+            padding: 1.5rem;
+        }
+        
+        .distro-info h3 {
+            margin-top: 0;
+            color: var(--dark);
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: #e9ecef;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .terminal {
+            background-color: var(--dark);
+            color: #00ff00;
+            padding: 1.5rem;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 2rem 0;
+            overflow-x: auto;
+        }
+        
+        .terminal .prompt::before {
+            content: '$ ';
+            color: var(--success);
+        }
+        
+        .command {
+            color: white;
+        }
+        
+        .comment {
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+        
+        .social-links {
+            margin: 1rem 0;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary);
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 0.5rem 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Мир Linux</h1>
+            <p>Откройте для себя мир свободного программного обеспечения и операционной системы Linux</p>
+            <a href="#about" class="btn">Узнать больше</a>
+        </div>
+    </header>
+    
+    <nav>
+        <ul>
+            <li><a href="#about">О Linux</a></li>
+            <li><a href="#features">Преимущества</a></li>
+            <li><a href="#distros">Дистрибутивы</a></li>
+            <li><a href="#commands">Команды</a></li>
+            <li><a href="#resources">Ресурсы</a></li>
+        </ul>
+    </nav>
+    
+    <section id="about" class="hero">
+        <div class="container">
+            <h2>Что такое Linux?</h2>
+            <p>Linux — это семейство Unix-подобных операционных систем на базе ядра Linux, которое было создано Линусом Торвальдсом в 1991 году. Linux является свободным и открытым программным обеспечением, что означает, что любой может использовать, изучать, изменять и распространять его исходный код.</p>
+            
+            <div class="terminal">
+                <div class="comment"># Вот так выглядит терминал Linux</div>
+                <div class="prompt"><span class="command">uname -a</span></div>
+                <div>Linux mypc 5.15.0-58-generic #64-Ubuntu SMP Thu Jan 5 11:43:13 UTC 2023 x86_64 x86_64 x86_64 GNU/Linux</div>
+            </div>
+            
+            <p>Сегодня Linux используется на самых разных устройствах: от серверов и суперкомпьютеров до смартфонов (Android основан на ядре Linux) и бытовой техники. Более 90% облачной инфраструктуры работает на Linux.</p>
+        </div>
+    </section>
+    
+    <section id="features">
+        <div class="container">
+            <h2>Преимущества Linux</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🔓</div>
+                    <h3>Свободное ПО</h3>
+                    <p>Linux распространяется с открытым исходным кодом под лицензией GPL. Вы можете свободно использовать, изучать, изменять и распространять систему.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Стабильность</h3>
+                    <p>Linux известен своей стабильностью и надежностью. Серверы на Linux могут работать годами без перезагрузки.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Безопасность</h3>
+                    <p>Архитектура Linux и система прав доступа делают его менее уязвимым для вирусов по сравнению с другими ОС.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Гибкость</h3>
+                    <p>Вы можете настроить Linux под свои нужды, выбрав подходящий дистрибутив, окружение рабочего стола и программное обеспечение.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Производительность</h3>
+                    <p>Linux эффективно использует ресурсы компьютера и может работать даже на очень старом оборудовании.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Сообщество</h3>
+                    <p>Огромное сообщество пользователей и разработчиков готово помочь с любыми вопросами через форумы, чаты и документацию.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="distros" class="distros">
+        <div class="container">
+            <h2>Популярные дистрибутивы Linux</h2>
+            <p>Дистрибутив — это операционная система на основе ядра Linux, включающая набор программного обеспечения. Вот некоторые из самых популярных:</p>
+            
+            <div class="distro-grid">
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3a/Ubuntu-term-logo.png'); background-color: #E95420;"></div>
+                    <div class="distro-info">
+                        <h3>Ubuntu</h3>
+                        <p>Один из самых популярных дистрибутивов для начинающих, основанный на Debian.</p>
+                        <span class="tag">Для начинающих</span>
+                        <span class="tag">Debian-based</span>
+                        <span class="tag">GNOME</span>
+                    </div>
+                </div>
+                
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/4/4a/Debian-OpenLogo.svg'); background-color: #A81D33;"></div>
+                    <div class="distro-info">
+                        <h3>Debian</h3>
+                        <p>Стабильный и надежный дистрибутив, на котором основаны многие другие.</p>
+                        <span class="tag">Стабильный</span>
+                        <span class="tag">Универсальный</span>
+                    </div>
+                </div>
+                
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/5e/Fedora_logo.svg'); background-color: #3C6EB4;"></div>
+                    <div class="distro-info">
+                        <h3>Fedora</h3>
+                        <p>Инновационный дистрибутив, спонсируемый Red Hat, с новейшими технологиями.</p>
+                        <span class="tag">Инновационный</span>
+                        <span class="tag">RPM</span>
+                    </div>
+                </div>
+                
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/5/56/Manjaro_logo_text.png'); background-color: #35BF5C;"></div>
+                    <div class="distro-info">
+                        <h3>Manjaro</h3>
+                        <p>Дружелюбный дистрибутив на основе Arch Linux с удобным установщиком.</p>
+                        <span class="tag">Arch-based</span>
+                        <span class="tag">Rolling release</span>
+                    </div>
+                </div>
+                
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/3/3b/CentOS_Logo.png'); background-color: #262577;"></div>
+                    <div class="distro-info">
+                        <h3>CentOS</h3>
+                        <p>Стабильный дистрибутив для серверов, совместимый с Red Hat Enterprise Linux.</p>
+                        <span class="tag">Серверный</span>
+                        <span class="tag">Стабильный</span>
+                    </div>
+                </div>
+                
+                <div class="distro-card">
+                    <div class="distro-img" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/73/Linux_Mint_logo_without_wordmark.svg'); background-color: #87CF3E;"></div>
+                    <div class="distro-info">
+                        <h3>Linux Mint</h3>
+                        <p>Популярный дистрибутив для начинающих, основанный на Ubuntu.</p>
+                        <span class="tag">Для начинающих</span>
+                        <span class="tag">Cinnamon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="commands">
+        <div class="container">
+            <h2>Основные команды Linux</h2>
+            <p>Вот некоторые из наиболее полезных команд для работы в терминале Linux:</p>
+            
+            <div class="terminal">
+                <div class="comment"># Навигация по файловой системе</div>
+                <div class="prompt"><span class="command">pwd</span></div>
+                <div class="comment"># показать текущую директорию</div>
+                <div class="prompt"><span class="command">ls</span></div>
+                <div class="comment"># список файлов и папок</div>
+                <div class="prompt"><span class="command">cd ~</span></div>
+                <div class="comment"># перейти в домашнюю директорию</div>
+                
+                <div class="comment"># Работа с файлами</div>
+                <div class="prompt"><span class="command">cp file.txt backup/</span></div>
+                <div class="comment"># копировать файл</div>
+                <div class="prompt"><span class="command">mv file.txt newname.txt</span></div>
+                <div class="comment"># переименовать или переместить</div>
+                <div class="prompt"><span class="command">rm file.txt</span></div>
+                <div class="comment"># удалить файл (осторожно!)</div>
+                
+                <div class="comment"># Системная информация</div>
+                <div class="prompt"><span class="command">top</span></div>
+                <div class="comment"># мониторинг процессов</div>
+                <div class="prompt"><span class="command">df -h</span></div>
+                <div class="comment"># информация о дисках</div>
+                <div class="prompt"><span class="command">free -h</span></div>
+                <div class="comment"># информация о памяти</div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="resources">
+        <div class="container">
+            <h2>Полезные ресурсы</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>Официальные сайты</h3>
+                    <ul>
+                        <li><a href="https://www.kernel.org/" target="_blank">Ядро Linux</a></li>
+                        <li><a href="https://ubuntu.com/" target="_blank">Ubuntu</a></li>
+                        <li><a href="https://www.debian.org/" target="_blank">Debian</a></li>
+                        <li><a href="https://archlinux.org/" target="_blank">Arch Linux</a></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Обучение</h3>
+                    <ul>
+                        <li><a href="https://linuxjourney.com/" target="_blank">Linux Journey</a></li>
+                        <li><a href="https://www.linuxfoundation.org/" target="_blank">Linux Foundation</a></li>
+                        <li><a href="https://tldp.org/" target="_blank">The Linux Documentation Project</a></li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>Сообщества</h3>
+                    <ul>
+                        <li><a href="https://www.reddit.com/r/linux/" target="_blank">r/linux на Reddit</a></li>
+                        <li><a href="https://linuxquestions.org/" target="_blank">LinuxQuestions</a></li>
+                        <li><a href="https://forum.ubuntu.ru/" target="_blank">Форум Ubuntu</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <h3>Мир Linux</h3>
+            <p>Свободное программное обеспечение для всех</p>
+            
+            <div class="social-links">
+                <a href="#" aria-label="Twitter">🐧</a>
+                <a href="#" aria-label="GitHub">💻</a>
+                <a href="#" aria-label="Discord">📢</a>
+            </div>
+            
+            <p>&copy; 2023 Мир Linux. Все права на Linux принадлежат Линусу Торвальдсу и сообществу разработчиков.</p>
+        </div>
+    </footer>
+</body>
+</html>
